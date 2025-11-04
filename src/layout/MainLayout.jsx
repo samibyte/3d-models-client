@@ -4,10 +4,10 @@ import Navbar from "../components/Navbar";
 const MainLayout = () => {
   return (
     <>
-      <header className="max-w-7xl mx-auto">
+      <header className="max-w-7xl mx-auto sticky top-0 z-99">
         <Navbar />
       </header>
-      <main className="bg-base-100">
+      <main className="bg-base-100 max-w-10/12 mx-auto">
         <Outlet />
       </main>
       <footer></footer>
