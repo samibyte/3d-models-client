@@ -53,3 +53,11 @@
   --depth: 1;
   --noise: 0;
 }
+
+.glass-effect {
+  @apply bg-white/25 backdrop-blur-md rounded-2xl border border-white/30;
+}
+
+.navbar .active {
+  @apply text-[crimson] font-bold border border-[#CAC8C8] rounded-2xl bg-[rgb(243,226,226)];
+}

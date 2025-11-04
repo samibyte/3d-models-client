@@ -12,7 +12,7 @@ const Navbar = () => {
   const { user, signOutUser } = use(AuthContext);
 
   return (
-    <div className="navbar bg-base-200 py-1 my-4 min-h-0 z-1 shadow-sm rounded-full glass-card max-w-7xl">
+    <div className="navbar  glass-effect bg-base-200 py-1 my-4 min-h-0 z-1 shadow-sm rounded-full glass-card max-w-7xl">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
@@ -43,8 +43,9 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to={"/all-models"}>
-                <IoLogoModelS /> All Models
+              <NavLink to={"/models"}>
+                <IoLogoModelS />
+                Models
               </NavLink>
             </li>
           </ul>
@@ -65,8 +66,9 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/all-models"}>
-              <IoLogoModelS /> All Models
+            <NavLink to={"/models"}>
+              <IoLogoModelS />
+              Models
             </NavLink>
           </li>
           <li>
