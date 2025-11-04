@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home";
+import Models from "../pages/Models";
+import ModelDetails from "../pages/ModelDetails";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +14,24 @@ const router = createBrowserRouter([
         element: <Home />,
         loader: async () => {
           const res = await fetch("http://localhost:3000/latest-models");
+          return res.json();
+        },
+      },
+      {
+        path: "/models",
+        element: <Models />,
+        loader: async () => {
+          const res = await fetch("http://localhost:3000/models");
+          return res.json();
+        },
+      },
+      {
+        path: "/model-details/:id",
+        element: <ModelDetails />,
+        loader: async ({ params }) => {
+          const res = await fetch(
+            `http://localhost:3000/model-details/${params.id}`
+          );
           return res.json();
         },
       },
