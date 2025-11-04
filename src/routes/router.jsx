@@ -7,6 +7,7 @@ import PrivateRouter from "./PrivateRouter";
 import Register from "../pages/auth/Register";
 import Login from "../pages/auth/Login";
 import AuthLayout from "../layout/AuthLayout";
+import AddModel from "../pages/AddModel";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,14 @@ const router = createBrowserRouter([
           );
           return res.json();
         },
+      },
+      {
+        path: "/add-model",
+        element: (
+          <PrivateRouter>
+            <AddModel />
+          </PrivateRouter>
+        ),
       },
     ],
   },
