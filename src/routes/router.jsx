@@ -3,6 +3,10 @@ import MainLayout from "../layout/MainLayout";
 import Home from "../pages/Home";
 import Models from "../pages/Models";
 import ModelDetails from "../pages/ModelDetails";
+import PrivateRouter from "./PrivateRouter";
+import Register from "../pages/auth/Register";
+import Login from "../pages/auth/Login";
+import AuthLayout from "../layout/AuthLayout";
 
 const router = createBrowserRouter([
   {
@@ -27,13 +31,31 @@ const router = createBrowserRouter([
       },
       {
         path: "/model-details/:id",
-        element: <ModelDetails />,
+        element: (
+          <PrivateRouter>
+            <ModelDetails />
+          </PrivateRouter>
+        ),
         loader: async ({ params }) => {
           const res = await fetch(
             `http://localhost:3000/model-details/${params.id}`
           );
           return res.json();
         },
+      },
+    ],
+  },
+  {
+    path: "/auth",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "/auth/register",
+        element: <Register />,
+      },
+      {
+        path: "/auth/login",
+        element: <Login />,
       },
     ],
   },
