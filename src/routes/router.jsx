@@ -21,7 +21,9 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
         loader: async () => {
-          const res = await fetch("http://localhost:3000/latest-models");
+          const res = await fetch(
+            "https://3d-models-hub-server-three.vercel.app/latest-models"
+          );
           return res.json();
         },
       },
@@ -29,7 +31,9 @@ const router = createBrowserRouter([
         path: "/models",
         element: <Models />,
         loader: async () => {
-          const res = await fetch("http://localhost:3000/models");
+          const res = await fetch(
+            "https://3d-models-hub-server-three.vercel.app/models"
+          );
           return res.json();
         },
       },

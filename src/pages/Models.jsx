@@ -12,7 +12,9 @@ const Models = () => {
     const searchText = e.target.search.value;
     console.log(searchText);
 
-    fetch(`http://localhost:3000/search?searchText=${searchText}`)
+    fetch(
+      `https://3d-models-hub-server-three.vercel.app/search?searchText=${searchText}`
+    )
       .then((res) => res.json())
       .then((data) => setModels(data));
   };

@@ -27,14 +27,17 @@ const AddModel = () => {
     };
 
     try {
-      const res = await fetch(`http://localhost:3000/models`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${user.accessToken}`,
-        },
-        body: JSON.stringify(newModelData),
-      });
+      const res = await fetch(
+        `https://3d-models-hub-server-three.vercel.app/models`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${user.accessToken}`,
+          },
+          body: JSON.stringify(newModelData),
+        }
+      );
       console.log(res);
       if (res.status === 200) {
         Swal.fire({

@@ -11,7 +11,7 @@ const ModelDetails = () => {
   const [refetch, setRefetch] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/model-details/${id}`, {
+    fetch(`https://3d-models-hub-server-three.vercel.app/model-details/${id}`, {
       headers: {
         authorization: `Bearer ${user.accessToken}`,
       },
@@ -22,14 +22,17 @@ const ModelDetails = () => {
 
   const handleDownlaod = async () => {
     try {
-      const res = await fetch("http://localhost:3000/downloads", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${user?.accessToken}`,
-        },
-        body: JSON.stringify({ ...model, downloaded_by: user?.email }),
-      });
+      const res = await fetch(
+        "https://3d-models-hub-server-three.vercel.app/downloads",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${user?.accessToken}`,
+          },
+          body: JSON.stringify({ ...model, downloaded_by: user?.email }),
+        }
+      );
       console.log(res);
       setRefetch(!refetch);
     } catch (err) {
@@ -60,7 +63,7 @@ const ModelDetails = () => {
         if (result.isConfirmed) {
           try {
             const res = await fetch(
-              `http://localhost:3000/models/${model._id}`,
+              `https://3d-models-hub-server-three.vercel.app/models/${model._id}`,
               {
                 method: "DELETE",
                 headers: {

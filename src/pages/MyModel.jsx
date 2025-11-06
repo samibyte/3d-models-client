@@ -10,11 +10,14 @@ const MyModel = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/my-model?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${user?.accessToken}`,
-      },
-    })
+    fetch(
+      `https://3d-models-hub-server-three.vercel.app/my-model?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${user?.accessToken}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setModels(data);

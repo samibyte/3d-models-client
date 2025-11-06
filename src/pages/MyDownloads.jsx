@@ -7,11 +7,14 @@ const MyDownloads = () => {
   const [models, setModels] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/downloads?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${user.accessToken}`,
-      },
-    })
+    fetch(
+      `https://3d-models-hub-server-three.vercel.app/downloads?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${user.accessToken}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => setModels(data));
   }, [user]);
