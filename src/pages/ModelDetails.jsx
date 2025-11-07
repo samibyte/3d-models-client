@@ -1,11 +1,23 @@
-import { Link, useLoaderData, useNavigate } from "react-router";
+import { use, useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
+import AuthContext from "../contexts/AuthContext";
 
 const ModelDetails = () => {
-  const data = useLoaderData();
-  const model = data.result;
-
   const navigate = useNavigate();
+  const { id } = useParams();
+  const { user } = use(AuthContext);
+  const [model, setModel] = useState([]);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/model-details/${id}`, {
+      headers: {
+        authorization: `Bearer ${user.accessToken}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => setModel(data.result));
+  }, [id, user.accessToken]);
 
   const handleDlete = () => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -35,6 +47,7 @@ const ModelDetails = () => {
                 method: "DELETE",
                 headers: {
                   "Content-Type": "application/json",
+                  authorization: `Bearer ${user?.accessToken}`,
                 },
               }
             );
@@ -50,10 +63,7 @@ const ModelDetails = () => {
           } catch (err) {
             console.error(err);
           }
-        } else if (
-          /* Read more about handling dismissals below */
-          result.dismiss === Swal.DismissReason.cancel
-        ) {
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
           swalWithBootstrapButtons.fire({
             title: "Cancelled",
             text: "Your imaginary file is safe :)",
@@ -95,13 +105,14 @@ const ModelDetails = () => {
             <div className="flex gap-3 mt-6">
               <Link
                 to={`/update-model/${model._id}`}
-                className="btn btn-primary rounded-full bg-linear-to-r from-pink-500 to-red-600 text-white border-0 hover:from-pink-600 hover:to-red-700"
+                className="btn btn-primary rounded-full bg-linear-to-r from-primary to-secondary text-white border-0 hover:from-secondary hover:to-primary transition-colors duration-500"
               >
                 Update Model
               </Link>
+              <button className="btn btn-accent rounded-full">Download</button>
               <button
                 onClick={handleDlete}
-                className="btn btn-outline rounded-full border-gray-300 hover:border-pink-500 hover:text-pink-600"
+                className="btn btn-outline rounded-full border-gray-300 hover:border-primary hover:text-pink-600"
               >
                 Delete
               </button>

@@ -8,11 +8,13 @@ import Register from "../pages/auth/Register";
 import Login from "../pages/auth/Login";
 import AuthLayout from "../layout/AuthLayout";
 import AddModel from "../pages/AddModel";
+import MyModel from "../pages/MyModel";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    hydrateFallbackElement: <div>loading...</div>,
     children: [
       {
         path: "/",
@@ -37,18 +39,20 @@ const router = createBrowserRouter([
             <ModelDetails />
           </PrivateRouter>
         ),
-        loader: async ({ params }) => {
-          const res = await fetch(
-            `http://localhost:3000/model-details/${params.id}`
-          );
-          return res.json();
-        },
       },
       {
         path: "/add-model",
         element: (
           <PrivateRouter>
             <AddModel />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/my-model",
+        element: (
+          <PrivateRouter>
+            <MyModel />
           </PrivateRouter>
         ),
       },

@@ -76,6 +76,11 @@ const Navbar = () => {
               <ImBoxAdd /> Add model
             </NavLink>
           </li>
+          <li>
+            <NavLink to={"/my-model"}>
+              <IoLogoModelS /> My Model
+            </NavLink>
+          </li>
           {/* 
           <li>
             <NavLink to={"/profile"}>
