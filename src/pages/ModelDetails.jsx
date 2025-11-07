@@ -8,6 +8,7 @@ const ModelDetails = () => {
   const { id } = useParams();
   const { user } = use(AuthContext);
   const [model, setModel] = useState([]);
+  const [refetch, setRefetch] = useState(false);
 
   useEffect(() => {
     fetch(`http://localhost:3000/model-details/${id}`, {
@@ -17,7 +18,7 @@ const ModelDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => setModel(data.result));
-  }, [user, id]);
+  }, [user, id, refetch]);
 
   const handleDownlaod = async () => {
     try {
@@ -30,6 +31,7 @@ const ModelDetails = () => {
         body: JSON.stringify({ ...model, downloaded_by: user?.email }),
       });
       console.log(res);
+      setRefetch(!refetch);
     } catch (err) {
       console.error(err);
     }
@@ -110,6 +112,9 @@ const ModelDetails = () => {
             {/* Category Badge */}
             <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">
               {model.category}
+            </div>
+            <div className="badge badge-lg badge-outline text-pink-600 border-pink-600 font-medium">
+              {model.downloads}
             </div>
 
             {/* Description */}

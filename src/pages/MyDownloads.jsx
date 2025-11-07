@@ -19,7 +19,7 @@ const MyDownloads = () => {
   console.log(models);
   return (
     <div>
-      <h2 className="text-3xl font-bold text-center my-10">My Models</h2>
+      <h2 className="text-3xl font-bold text-center my-10">My Downloads</h2>
       <div className="grid grid-cols-4 gap-5">
         {models?.map((model) => (
           <ModelCard model={model} />
