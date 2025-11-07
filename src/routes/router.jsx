@@ -9,6 +9,7 @@ import Login from "../pages/auth/Login";
 import AuthLayout from "../layout/AuthLayout";
 import AddModel from "../pages/AddModel";
 import MyModel from "../pages/MyModel";
+import MyDownloads from "../pages/MyDownloads";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRouter>
             <MyModel />
+          </PrivateRouter>
+        ),
+      },
+      {
+        path: "/my-downloads",
+        element: (
+          <PrivateRouter>
+            <MyDownloads />
           </PrivateRouter>
         ),
       },

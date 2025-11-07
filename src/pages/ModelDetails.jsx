@@ -17,7 +17,23 @@ const ModelDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => setModel(data.result));
-  }, [id, user.accessToken]);
+  }, [user, id]);
+
+  const handleDownlaod = async () => {
+    try {
+      const res = await fetch("http://localhost:3000/downloads", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: `Bearer ${user?.accessToken}`,
+        },
+        body: JSON.stringify({ ...model, downloaded_by: user?.email }),
+      });
+      console.log(res);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleDlete = () => {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -109,7 +125,12 @@ const ModelDetails = () => {
               >
                 Update Model
               </Link>
-              <button className="btn btn-accent rounded-full">Download</button>
+              <button
+                onClick={handleDownlaod}
+                className="btn btn-accent rounded-full"
+              >
+                Download
+              </button>
               <button
                 onClick={handleDlete}
                 className="btn btn-outline rounded-full border-gray-300 hover:border-primary hover:text-pink-600"
